@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hobbies of Luca Greutert: handball and guitar." />
+  <title>Hobbies | Luca Greutert</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="brand-menu">
+      <button class="logo-mark" type="button" aria-label="Open page menu" aria-expanded="false">
+        LG
+      </button>
+      <div class="logo-dropdown" aria-label="Page menu">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="hobbies.html" aria-current="page">Hobbies</a>
+      </div>
+      <a class="logo-name" href="index.html">Luca Greutert</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="hobbies.html" aria-current="page">Hobbies</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section page-hero">
+      <div class="page-intro reveal">
+        <p class="kicker">Outside Code</p>
+        <h1>Handball and guitar keep the balance.</h1>
+        <p>
+          One is fast, loud, and physical. The other is calm, repetitive, and
+          creative. Both help me practice focus in a different way.
+        </p>
+      </div>
+    </section>
+
+    <section class="section hobby-panel reveal" aria-label="Hobby tabs">
+      <div class="tab-list" role="tablist" aria-label="Choose hobby">
+        <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="handball-panel" id="handball-tab" data-tab="handball">
+          Handball
+        </button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="guitar-panel" id="guitar-tab" data-tab="guitar">
+          Guitar
+        </button>
+      </div>
+
+      <article class="tab-panel active" id="handball-panel" role="tabpanel" aria-labelledby="handball-tab" data-panel="handball">
+        <span>Team Sport</span>
+        <h2>Fast decisions, trust, and pressure.</h2>
+        <p>
+          Handball teaches me to read a situation quickly, react with control, and
+          still trust the people around me. I like the pace because it forces me to
+          stay awake and make decisions without overthinking everything.
+        </p>
+      </article>
+
+      <article class="tab-panel" id="guitar-panel" role="tabpanel" aria-labelledby="guitar-tab" data-panel="guitar" hidden>
+        <span>Music</span>
+        <h2>A slower way to practice creativity.</h2>
+        <p>
+          Guitar has the same satisfying loop as programming: learn a pattern, repeat
+          it, clean it up, and slowly turn rough noise into something that feels good.
+          It keeps the creative side active without needing a screen.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Luca Greutert</p>
+    <p>Made in Switzerland</p>
+  </footer>
+</body>
+</html>

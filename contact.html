@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Contact Luca Greutert, apprentice software developer from Switzerland."
+  />
+  <title>Contact | Luca Greutert</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="brand-menu">
+      <button class="logo-mark" type="button" aria-label="Open page menu" aria-expanded="false">
+        LG
+      </button>
+      <div class="logo-dropdown" aria-label="Page menu">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="hobbies.html">Hobbies</a>
+      </div>
+      <a class="logo-name" href="index.html">Luca Greutert</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="hobbies.html">Hobbies</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section contact-layout">
+      <div class="page-intro reveal">
+        <p class="kicker">Contact</p>
+        <h1>Let's connect.</h1>
+        <p>
+          Send a short message if you have a question, a project idea, or something
+          useful to discuss. The form is a demo for now and can be connected to a
+          backend later.
+        </p>
+      </div>
+
+      <form class="contact-form reveal">
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="6" placeholder="What should we talk about?" required></textarea>
+        </label>
+
+        <button class="send-button" type="submit">Send demo message</button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Luca Greutert</p>
+    <p>Made in Switzerland</p>
+  </footer>
+</body>
+</html>
