@@ -1140,7 +1140,8 @@
     const updateActiveLinkOnScroll = () => {
       const scrollPosition = window.scrollY + 100; // Offset for header
 
-      const sections = document.querySelectorAll(".section");
+      // Only check top-level sections (direct children of main) to avoid nested sections
+      const sections = document.querySelectorAll("main > .section");
       let currentSectionId = "";
 
       sections.forEach(section => {
