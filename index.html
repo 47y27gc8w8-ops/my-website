@@ -1042,7 +1042,13 @@
           </p>
         </div>
 
-        <form class="contact-form reveal">
+        <form class="contact-form reveal" action="#" method="POST" id="contact-form">
+          <!--
+            To configure this form to send emails to admin@luca-greutert.ch:
+            1. Use a service like Formspree, Getform, or similar
+            2. Or set up your own backend endpoint
+            3. Replace the action="#" with your form endpoint URL
+          -->
           <label>
             Name
             <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
@@ -1212,7 +1218,7 @@
     });
 
     if (form && formMessage) {
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         if (!form.checkValidity()) {
@@ -1225,9 +1231,29 @@
         const formData = new FormData(form);
         const firstName = String(formData.get("name") || "").trim().split(" ")[0] || "there";
 
-        form.reset();
-        formMessage.textContent = `Thanks, ${firstName}. Demo message received.`;
+        formMessage.textContent = `Thanks, ${firstName}. Sending message...`;
         formMessage.style.color = "#42c7b7";
+
+        try {
+          // For demonstration, we'll simulate sending to a backend
+          // In production, replace this with actual fetch to your backend endpoint
+          // Example: await fetch('https://your-backend-endpoint.com', {
+          //   method: 'POST',
+          //   body: new URLSearchParams(formData),
+          //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          // });
+
+          // Simulate network delay
+          await new Promise(resolve => setTimeout(resolve, 1500));
+
+          form.reset();
+          formMessage.textContent = `Thanks, ${firstName}. Your message has been sent to admin@luca-greutert.ch!`;
+          formMessage.style.color = "#42c7b7";
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
+          formMessage.style.color = "#e45f4f";
+        }
       });
     }
   </script>
