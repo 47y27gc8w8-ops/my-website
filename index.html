@@ -1234,6 +1234,7 @@
 
         try {
           // Submit to Formspree
+          console.log('Submitting form to Formspree...');
           const response = await fetch('https://formspree.io/f/moqyvpdo', {
             method: 'POST',
             body: formData,
@@ -1242,16 +1243,23 @@
             }
           });
 
+          console.log('Formspree response:', response);
+
           if (response.ok) {
+            const result = await response.json();
+            console.log('Formspree result:', result);
             form.reset();
             formMessage.textContent = `Thanks, ${firstName}. Your message has been sent to admin@luca-greutert.ch!`;
             formMessage.style.color = "#42c7b7";
           } else {
-            throw new Error('Network response was not ok');
+            const errorText = await response.text();
+            console.error('Formspree error response:', response.status, errorText);
+            throw new Error(`Formspree error: ${response.status} - ${errorText}`);
           }
         } catch (error) {
           console.error('Error submitting form:', error);
-          formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
+          // Show more specific error message for debugging
+          formMessage.textContent = `Error: ${error.message}. Please check console for details.`;
           formMessage.style.color = "#e45f4f";
         }
       });
