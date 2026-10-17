@@ -1,8 +1,7 @@
 const logoButton = document.querySelector(".logo-mark");
-const logoDropdown = document.querySelector(".logo-dropdown");
 const navToggle = document.querySelector(".nav-toggle");
-const siteNav = document.querySelector(".site-nav");
-const navLinks = document.querySelectorAll(".site-nav a");
+const siteNav = document.querySelector(".shortcuts");
+const navLinks = document.querySelectorAll(".shortcuts a");
 const year = document.querySelector("#year");
 const revealElements = document.querySelectorAll(".reveal");
 const form = document.querySelector(".contact-form");
@@ -13,16 +12,6 @@ const tabPanels = document.querySelectorAll("[data-panel]");
 if (year) {
   year.textContent = new Date().getFullYear();
 }
-
-const closeLogoDropdown = () => {
-  if (!logoButton || !logoDropdown) {
-    return;
-  }
-
-  logoDropdown.classList.remove("open");
-  logoButton.setAttribute("aria-expanded", "false");
-  logoButton.setAttribute("aria-label", "Open page menu");
-};
 
 const closeNavigation = () => {
   if (!navToggle || !siteNav) {
@@ -35,17 +24,15 @@ const closeNavigation = () => {
   document.body.classList.remove("menu-open");
 };
 
-if (logoButton && logoDropdown) {
+// Logo button doesn't have a dropdown in current HTML, so we'll just have it toggle the mobile menu
+if (logoButton) {
   logoButton.addEventListener("click", (event) => {
     event.stopPropagation();
-    const isOpen = logoDropdown.classList.toggle("open");
-    logoButton.setAttribute("aria-expanded", String(isOpen));
-    logoButton.setAttribute("aria-label", isOpen ? "Close page menu" : "Open page menu");
-    closeNavigation();
-  });
-
-  logoDropdown.addEventListener("click", (event) => {
-    event.stopPropagation();
+    // Toggle mobile navigation when logo is clicked
+    const isOpen = siteNav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    document.body.classList.toggle("menu-open", isOpen);
   });
 }
 
@@ -55,20 +42,36 @@ if (navToggle && siteNav) {
     navToggle.setAttribute("aria-expanded", String(isOpen));
     navToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
     document.body.classList.toggle("menu-open", isOpen);
-    closeLogoDropdown();
   });
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", closeNavigation);
+    link.addEventListener("click", () => {
+      // Close mobile menu when a link is clicked
+      siteNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open navigation");
+      document.body.classList.remove("menu-open");
+    });
   });
 }
 
-document.addEventListener("click", closeLogoDropdown);
+document.addEventListener("click", (event) => {
+  // Close mobile menu when clicking outside of it
+  if (navToggle && siteNav && !siteNav.contains(event.target) && !navToggle.contains(event.target)) {
+    siteNav.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open navigation");
+    document.body.classList.remove("menu-open");
+  }
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    closeLogoDropdown();
-    closeNavigation();
+    // Close mobile menu when Escape is pressed
+    siteNav.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open navigation");
+    document.body.classList.remove("menu-open");
   }
 });
 
